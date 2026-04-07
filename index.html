@@ -6,13 +6,17 @@
   <title>Sabahattin Aluc — Founder of Bright Leaf Design</title>
   <meta name="description" content="Sabahattin Aluc is the founder of Bright Leaf Design, a premium web design agency combining agentic AI with boutique creative quality.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,10 90,90 10,90' fill='%23D4A853'/></svg>">
 </head>
 <body>
+  <!-- Skip Link -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <!-- Navigation -->
   <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
@@ -23,7 +27,7 @@
         <li><a href="#writing" class="nav-link">Writing</a></li>
         <li><a href="#contact" class="nav-link nav-cta">Get in Touch</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
         <span class="nav-toggle-icon">
           <span></span>
           <span></span>
@@ -35,19 +39,19 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="#about">About</a>
-    <a href="#work">Work</a>
-    <a href="#writing">Writing</a>
-    <a href="#contact" class="mobile-menu-cta">Get in Touch</a>
+    <a href="#about" class="mobile-menu-link">About</a>
+    <a href="#work" class="mobile-menu-link">Work</a>
+    <a href="#writing" class="mobile-menu-link">Writing</a>
+    <a href="#contact" class="mobile-menu-link mobile-menu-cta">Get in Touch</a>
   </div>
 
-  <main>
+  <main id="main">
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="hero-content">
         <h1 class="hero-name">Sabahattin Aluc</h1>
         <p class="hero-tagline">Founder of Bright Leaf Design</p>
-        <p class="hero-role">Design. Strategy. Craft.</p>
+        <p class="hero-role">Design &middot; Strategy &middot; Craft</p>
         <a href="#work" class="btn btn-ghost">View My Work</a>
       </div>
     </section>
@@ -55,14 +59,9 @@
     <!-- About Section -->
     <section class="section-about" id="about">
       <div class="about-container">
-        <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=480&q=80"
-          alt="Sabahattin Aluc, founder of Bright Leaf Design"
-          width="240"
-          height="240"
-          loading="lazy"
-          class="about-photo"
-        >
+        <div class="about-photo-wrapper" aria-hidden="true">
+          <div class="about-photo-placeholder" aria-label="Sabahattin Aluc"></div>
+        </div>
         <h2 class="about-name">Sabahattin Aluc</h2>
         <div class="about-rule"></div>
         <p class="about-bio">
@@ -206,5 +205,36 @@
       <span class="footer-copyright">&copy; 2026 Sabahattin Aluc. All rights reserved.</span>
     </div>
   </footer>
+
+  <script>
+    // Navigation scroll effect
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    var toggle = document.getElementById('nav-toggle');
+    var mobileMenu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', function() {
+      var isOpen = mobileMenu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+    });
+
+    // Close mobile menu on link click
+    var mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+  </script>
 </body>
 </html>
